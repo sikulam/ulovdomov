@@ -105,7 +105,7 @@ class UserAdminModel
         $rightsModel = new UserAdminRightsModel();
 
         // getUserRightsByTypeForVillages - model by vrátil dle dotazu do datábaze seznam měst kde má uživatel pro dané právo true
-        return $rightsModel->getUserRightsByTypeForVillages($rightsType);
+        return $rightsModel->getUserRightsByTypeForVillages($user, $rightsType);
     }
 
     public function addUserAdmin(string $name): void
@@ -147,7 +147,7 @@ class UserAdminModel
         // checkRightsByType - metoda by vrátila bool - pokud by měl uživatel pro všechna města oprávnění tak true jinak false
         // vycházelo by to z tabulky/entity UserAdminRights
         // v modelu by pak byl sql dotaz na oprávnění zda má pro všechna města true
-        $rights = $rightsModel->checkRightsByType($type);
+        $rights = $rightsModel->checkRightsByType($user, $type);
 
         return $rights;
     }
